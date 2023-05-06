@@ -61,15 +61,14 @@ def create_commendation(schoolkid, subject):
 
     schoolkid_year_of_study = schoolkid.year_of_study
     schoolkid_group_letter = schoolkid.group_letter
-    subject_lessons = Lesson.objects.filter(
+    lesson = Lesson.objects.filter(
         year_of_study=schoolkid_year_of_study,
         group_letter=schoolkid_group_letter,
         subject=subject
-    )
-    random_lesson = random.choice(subject_lessons)
+    ).order_by('-date').first()
     praise_text = random.choice(praise_examples)
-    teacher = random_lesson.teacher
-    date = random_lesson.date
+    teacher = lesson.teacher
+    date = lesson.date
     Commendation.objects.create(
         text=praise_text,
         created=date,
