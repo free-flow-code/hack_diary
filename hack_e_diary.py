@@ -16,10 +16,10 @@ def get_schoolkid_entry(schoolkid_name):
             )
         )
         return schoolkid
-    except ObjectDoesNotExist:
+    except Schoolkid.DoesNotExist:
         print('Имя не найдено. Проверьте правильность ввода.')
         exit()
-    except MultipleObjectsReturned:
+    except Schoolkid.MultipleObjectsReturned:
         print('Найдено несколько записей, уточните имя.')
         exit()
 
@@ -31,7 +31,7 @@ def get_subject_entry(schoolkid, subject_name):
             year_of_study=schoolkid.year_of_study,
         )
         return subject
-    except ObjectDoesNotExist:
+    except Subject.DoesNotExist:
         print('Предмет не найден. Проверьте правильность ввода.')
 
 
